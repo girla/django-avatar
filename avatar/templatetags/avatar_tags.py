@@ -21,7 +21,7 @@ def avatar_url(user, size=AVATAR_DEFAULT_SIZE):
     if avatar:
         return avatar.avatar_url(size)
     else:
-        use_gravatar = user.use_gravatar if hasattr(user, 'use_gravatar') else True
+        use_gravatar = user.profile.use_gravatar if (hasattr(user, 'profile') and hasattr(user.profile, 'use_gravatar')) else True
         if AVATAR_GRAVATAR_BACKUP and use_gravatar:
             params = {'s': str(size)}
             if AVATAR_GRAVATAR_DEFAULT:
